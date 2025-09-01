@@ -1,0 +1,307 @@
+/* Body + background */
+:root {
+  --content-width: 1100px;
+  --glass-bg: rgba(255,255,255,0.08);
+  --card-bg: rgba(255,255,255,0.10);
+  --accent: rgba(255,255,255,0.85);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #fff;
+  background: url('blackbg.webp') center/cover no-repeat fixed;
+  position: relative;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* subtle dark overlay for contrast */
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,20,40,0.25), rgba(0,10,20,0.25));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Navbar / search */
+.navbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 18px 12px;
+}
+
+.search-bar {
+  width: 360px;
+  max-width: 92%;
+  position: relative;
+  z-index: 3;
+}
+
+.inputbox {
+  width: 100%;
+  padding: 12px 48px 12px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.02);
+  color: var(--accent);
+  font-size: 0.98rem;
+  outline: none;
+  transition: box-shadow .18s ease, transform .18s ease;
+}
+
+.inputbox:focus {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.45), 0 0 0 6px rgba(255,255,255,0.02);
+  transform: translateY(-1px);
+}
+
+/* search icon inside input */
+.searchicon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.95;
+  pointer-events: none;
+  transition: transform .18s ease, opacity .18s ease;
+}
+
+/* Main content container */
+.maincontent {
+  position: relative;
+  z-index: 3;
+  max-width: var(--content-width);
+  margin: 28px auto;
+  padding: 24px;
+  width: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Hero section: big temp and city */
+.hero {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--accent);
+}
+
+/* inline row for cloud image and temperature/condition */
+.hero-inline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.temp-cond { display:flex; flex-direction:column; justify-content:center; }
+
+#cloudimg { height: 8vh; width: auto; border-radius: 8px; }
+
+.temp-large { font-size: clamp(36px, 6vw, 72px); margin:0; }
+.conditions { font-size: 1.05rem; opacity:0.95; margin-top:4px; }
+
+.hero-left {
+  flex: 1;
+}
+
+.temp-large {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.temp-large .deg {
+  font-size: 0.35em;
+  opacity: .95;
+  margin-left: 6px;
+}
+
+.conditions {
+  margin-top: 6px;
+  font-size: 1.25rem;
+  opacity: .95;
+}
+
+.city {
+  margin-top: 8px;
+  font-size: 1rem;
+  opacity: .9;
+}
+
+/* small info pills */
+.quick-info { display:flex; gap:12px; margin-top: 14px; flex-wrap:wrap; }
+.pill {
+  padding:8px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  font-size: 0.9rem;
+  color: var(--accent);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* cloud image at right */
+#cloudimg {
+  height: 8vh;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.35));
+}
+
+/* Cards row (feels/humidity + forecast) */
+.cards-row {
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* general card style */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius: 14px;
+  padding: 14px;
+  flex: 1;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.32);
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+/* feels/humidity card specifics */
+.feels-humidity { display:flex; gap:16px; align-items:center; min-width: 320px; }
+.feels, .hum { flex:1; text-align:center; color:var(--accent); }
+.feels h4, .hum h4 { font-weight:600; margin-bottom:8px; font-size:0.95rem; }
+
+/* vertical divider */
+.feels-humidity .divider {
+  width:1px; height:64px; background: rgba(255,255,255,0.06);
+  border-radius:2px; margin: 0 6px;
+}
+
+/* icon sizes requested: height 8vh and width about 8% of container */
+.icon-lg {
+  height: 8vh;
+  width: 8%;
+  min-width: 36px;
+  object-fit: contain;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+/* Forecast (Mon-Fri) */
+.forecast .days {
+  display:flex;
+  gap:12px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+.day-box {
+  background: rgba(255,255,255,0.04);
+  padding:12px;
+  border-radius: 12px;
+  min-width: 88px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  align-items:center;
+  justify-content:center;
+  transition: transform .18s ease, box-shadow .18s ease;
+  border:1px solid rgba(255,255,255,0.04);
+}
+
+.day-box h5 { font-size:0.95rem; margin:0; color:var(--accent); }
+.day-box p { font-weight:600; margin:0; color:var(--accent); }
+
+/* smaller forecast icons (use same visual sizing rule) */
+.icon-sm { height: 6vh; width: 6%; min-width:28px; object-fit:contain; }
+
+/* sunrise/sunset row */
+.sunset-row {
+  display:flex;
+  gap:18px;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* sun-box */
+.sun-box {
+  display:flex;
+  gap:18px;
+  align-items:center;
+  padding:12px;
+  border-radius:12px;
+  background: rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.04);
+}
+
+/* compact sunbox used under quick-info */
+.small-sunbox {
+  margin-top: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.small-sunbox .icon-lg { height: 6.5vh; width: 6.5%; min-width: 32px; }
+.sun-time { color: var(--accent); font-weight:600; }
+
+/* datetime widget */
+.datetime-widget {
+  text-align:right;
+  color:var(--accent);
+  min-width: 220px;
+  transition: transform .18s ease, box-shadow .18s ease;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* hover micro-interactions */
+.card:hover, .day-box:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.36); }
+
+/* responsive tweaks */
+@media (max-width: 880px) {
+  .cards-row { flex-direction: column; }
+  .forecast .days { justify-content: center; overflow-x:auto; padding-bottom:6px; }
+}
+
+
+.datetime-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  text-align: right;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  transition: transform .18s ease, box-shadow .18s ease;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+.time {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.day {
+  font-size: 1rem;
+  margin-top: 3px;
+  opacity: 0.9;
+}

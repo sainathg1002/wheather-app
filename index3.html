@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather UI</title>
+  <link rel="stylesheet" href="style3.css" />
+</head>
+<body>
+  <div class="bg-overlay"></div>
+
+  <header class="navbar">
+    <div class="search-bar">
+      <input class="inputbox" type="text" placeholder="Enter city name..." />
+      <img class="searchicon" src="search.jpg" alt="search" />
+    </div>
+  </header>
+
+  <main class="maincontent">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-inline">
+          <img id="cloudimg" src="images.jpeg" alt="cloud" loading="lazy" />
+          <div class="temp-cond">
+            <div class="temp-large">25<span class="deg">°C</span>
+            <div class="conditions">Cloudy</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="city">Anantapur, Andhrapradesh</div>
+
+        <div class="quick-info">
+          <div class="pill">25° &nbsp; | &nbsp; 25°</div>
+          <div class="pill">6:02 AM <span class="dot">•</span> 6:31 PM</div>
+        </div>
+
+        <!-- small sunbox placed after quick-info -->
+        <div class="sun-box small-sunbox">
+          <div class="sun-item">
+            <img class="icon-lg" src="sunrise.jpeg" alt="sunrise" />
+            <div class="sun-time">06:15 AM</div>
+          </div>
+          <div class="sun-item">
+            <img class="icon-lg" src="sunset.webp" alt="sunset" />
+            <div class="sun-time">06:45 PM</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards-row">
+      <div class="card feels-humidity">
+        <div class="feels">
+          <h4>Feels Like</h4>
+          <div class="feels-value">
+            <img class="icon-lg" src="pngtree-thermometer.jpg" alt="therm" />
+            <span class="value">25°</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="hum">
+          <h4>Humidity</h4>
+          <div class="hum-value">
+            <img class="icon-lg" src="humidty.png" alt="hum" />
+            <span class="value">82%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card forecast">
+        <div class="days">
+          <div class="day-box">
+            <h5>Mon</h5>
+            <img class="icon-sm" src="images.jpeg" alt="cloud" />
+            <p>29° / 23°</p>
+          </div>
+          <div class="day-box">
+            <h5>Tue</h5>
+            <img class="icon-sm" src="images.jpeg" alt="cloud" />
+            <p>28° / 22°</p>
+          </div>
+          <div class="day-box">
+            <h5>Wed</h5>
+            <img class="icon-sm" src="images.jpeg" alt="cloud" />
+            <p>23° / 22°</p>
+          </div>
+          <div class="day-box">
+            <h5>Thu</h5>
+            <img class="icon-sm" src="images.jpeg" alt="cloud" />
+            <p>27° / 21°</p>
+          </div>
+          <div class="day-box">
+            <h5>Fri</h5>
+            <img class="icon-sm" src="images.jpeg" alt="cloud" />
+            <p>23° / 21°</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sunset-row">
+      <!-- <div class="box sun-box">
+        <div class="sun-item">
+          <img class="icon-lg" src="sunrise.jpeg" alt="sunrise" />
+          <div>06:15 AM</div>
+        </div>
+        <div class="sun-item">
+          <img class="icon-lg" src="sunset.webp" alt="sunset" />
+          <div>06:45 PM</div>
+        </div>
+      </div> -->
+      <div class="datetime-widget">
+        <div class="time">10:29 AM</div>
+        <div class="day">Sun, Aug 31</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
