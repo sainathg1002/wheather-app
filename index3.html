@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Weather UI</title>
   <link rel="stylesheet" href="style3.css" />
+  <script src="script.js" ></script>
 </head>
 <body>
   <div class="bg-overlay"></div>
@@ -12,7 +13,7 @@
   <header class="navbar">
     <div class="search-bar">
       <input class="inputbox" type="text" placeholder="Enter city name..." />
-      <img class="searchicon" src="search.jpg" alt="search" />
+      <img class="searchicon" src="white-search-icon-.png" alt="search" onclick="fetchdata()" />
     </div>
   </header>
 
@@ -28,7 +29,7 @@
           </div>
         </div>
 
-        <div class="city">Anantapur, Andhrapradesh</div>
+        <div class="city">Anantapur</div>
 
         <div class="quick-info">
           <div class="pill">25° &nbsp; | &nbsp; 25°</div>
@@ -38,10 +39,12 @@
         <!-- small sunbox placed after quick-info -->
         <div class="sun-box small-sunbox">
           <div class="sun-item">
+            <h3>sunrise &</h3>
             <img class="icon-lg" src="sunrise.jpeg" alt="sunrise" />
             <div class="sun-time">06:15 AM</div>
           </div>
           <div class="sun-item">
+            <h3>sunset</h3>
             <img class="icon-lg" src="sunset.webp" alt="sunset" />
             <div class="sun-time">06:45 PM</div>
           </div>
@@ -60,7 +63,7 @@
         </div>
         <div class="divider"></div>
         <div class="hum">
-          <h4>Humidity</h4>
+          <h4 id="Humidity">Humidity</h4>
           <div class="hum-value">
             <img class="icon-lg" src="humidty.png" alt="hum" />
             <span class="value">82%</span>

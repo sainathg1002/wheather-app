@@ -4,6 +4,9 @@
   --glass-bg: rgba(255,255,255,0.08);
   --card-bg: rgba(255,255,255,0.10);
   --accent: rgba(255,255,255,0.85);
+  --transition-fast: 140ms;
+  --transition-medium: 220ms;
+  --transition-smooth: cubic-bezier(.2,.9,.2,1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -12,8 +15,9 @@ body {
   min-height: 100vh;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   color: #fff;
-  background: url('blackbg.webp') center/cover no-repeat fixed;
-  position: relative;
+  background: url('blackbg.jpg') center/cover no-repeat fixed;
+  background-position: center;
+  background-attachment: fixed;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
@@ -60,6 +64,12 @@ body {
   transform: translateY(-1px);
 }
 
+/* subtle hover for search bar container */
+.search-bar:hover .inputbox {
+  box-shadow: 0 10px 26px rgba(0,0,0,0.5);
+  transform: translateY(-2px);
+}
+
 /* search icon inside input */
 .searchicon {
   position: absolute;
@@ -70,17 +80,21 @@ body {
   height: 28px;
   object-fit: contain;
   opacity: 0.95;
-  pointer-events: none;
-  transition: transform .18s ease, opacity .18s ease;
+  pointer-events: visiblePainted;
+  transition: transform var(--transition-fast) var(--transition-smooth), opacity var(--transition-fast);
+  color: white;
 }
+
+.searchicon:hover { transform: translateY(-50%) scale(1.06); opacity: 1; cursor: pointer; }
+.searchicon:active { transform: translateY(-50%) scale(0.98); }
 
 /* Main content container */
 .maincontent {
   position: relative;
   z-index: 3;
   max-width: var(--content-width);
-  margin: 28px auto;
-  padding: 24px;
+  margin: 15px auto;
+  padding: 0%;
   width: calc(100% - 40px);
   display: flex;
   flex-direction: column;
@@ -176,7 +190,7 @@ body {
   flex: 1;
   box-shadow: 0 6px 20px rgba(0,0,0,0.32);
   border: 1px solid rgba(255,255,255,0.04);
-  transition: transform .22s ease, box-shadow .22s ease;
+  transition: transform var(--transition-medium) var(--transition-smooth), box-shadow var(--transition-medium) var(--transition-smooth), background var(--transition-medium);
 }
 
 /* feels/humidity card specifics */
@@ -196,7 +210,7 @@ body {
   width: 8%;
   min-width: 36px;
   object-fit: contain;
-  transition: transform .22s ease, opacity .22s ease;
+  transition: transform var(--transition-medium) var(--transition-smooth), opacity var(--transition-fast);
 }
 
 /* Forecast (Mon-Fri) */
@@ -219,9 +233,11 @@ body {
   gap:6px;
   align-items:center;
   justify-content:center;
-  transition: transform .18s ease, box-shadow .18s ease;
+  transition: transform var(--transition-fast) var(--transition-smooth), box-shadow var(--transition-fast), background var(--transition-medium);
   border:1px solid rgba(255,255,255,0.04);
 }
+
+.day-box:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,0.28); background: rgba(255,255,255,0.06); }
 
 .day-box h5 { font-size:0.95rem; margin:0; color:var(--accent); }
 .day-box p { font-weight:600; margin:0; color:var(--accent); }
@@ -260,6 +276,9 @@ body {
   border: 1px solid rgba(255,255,255,0.05);
 }
 
+.small-sunbox:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.small-sunbox { transition: transform var(--transition-medium) var(--transition-smooth), box-shadow var(--transition-medium); }
+
 .small-sunbox .icon-lg { height: 6.5vh; width: 6.5%; min-width: 32px; }
 .sun-time { color: var(--accent); font-weight:600; }
 
@@ -274,6 +293,14 @@ body {
 
 /* hover micro-interactions */
 .card:hover, .day-box:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.36); }
+
+/* hero hover micro interaction */
+.hero-inline:hover { filter: brightness(1.02) saturate(1.02); transform-origin: left center; }
+.hero-inline { transition: filter var(--transition-medium), transform var(--transition-medium); }
+
+/* temp-large subtle hover */
+.temp-large:hover { transform: translateY(-4px); color: #fff; }
+.temp-large { transition: transform var(--transition-medium) var(--transition-smooth), color var(--transition-fast); }
 
 /* responsive tweaks */
 @media (max-width: 880px) {
@@ -305,3 +332,5 @@ body {
   margin-top: 3px;
   opacity: 0.9;
 }
+
+/* end of stylesheet */
